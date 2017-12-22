@@ -1,4 +1,4 @@
-#define SWPIN 35
+#define SWPIN 0
 #define LEDPIN 16
 
 void setup() {
