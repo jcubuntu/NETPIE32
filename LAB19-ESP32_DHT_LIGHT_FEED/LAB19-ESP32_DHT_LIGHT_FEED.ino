@@ -1,6 +1,6 @@
 #include <WiFi.h>
 #include <MicroGear.h>
-#include "DHT.h"                              // library สำหรับอ่านค่า DHT Sensor ต้องติดตั้ง DHT sensor library by Adafruit v1.2.3 ก่อน
+#include <DHT.h>                              // library สำหรับอ่านค่า DHT Sensor ต้องติดตั้ง DHT sensor library by Adafruit v1.2.3 ก่อน
 
 // ----- แก้ค่า config 7 ค่าข้างล่างนี้ --------------------------------------------------------
 const char* ssid     = "WIFI_SSID";       // ชื่อ ssid
@@ -17,7 +17,7 @@ const char* password = "WIFI_KEY";        // รหัสผ่าน wifi
 #define LEDSTATETOPIC "/ledstate/" ALIAS      // topic ที่ต้องการ publish ส่งสถานะ led ในที่นี้จะเป็น /ledstate/{ชื่อ alias ตัวเอง}
 #define DHTDATATOPIC "/dht/" ALIAS            // topic ที่ต้องการ publish ส่งข้อมูล dht ในที่นี่จะเป็น /dht/{ชื่อ alias ตัวเอง}
 
-#define BUTTONPIN  35                         // pin ที่ต่อกับปุ่ม Flash บนบอร์ด NodeMCU
+#define BUTTONPIN  35                         // pin ที่ต่อกับปุ่ม PUSHs บนบอร์ด NodeMCU
 #define LEDPIN     LED_BUILTIN                // pin ที่ต่อกับไฟ LED บนบอร์ด NodeMCU
 
 #define FEEDID   "FEEDID"           // ให้แทนที่ด้วย FeedID
@@ -142,6 +142,8 @@ void loop() {
             data += humid ;
             data += ", \"temp\":";
             data += temp ;
+            data += ", \"light\":";
+            data += light ;
             data += "}"; 
             Serial.print("Write Feed --> ");
             Serial.println(data);
